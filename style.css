@@ -1,0 +1,28 @@
+
+body {
+    font-family: "Raleway", Arial, sans-serif
+}
+
+.w3-row img {
+    margin-bottom: -8px
+}
+
+footer {
+    padding: .5em;
+    position: relative;
+    float: center;
+    margin-top: 8em;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.input-group
+{
+    padding: .5em;
+    position: relative;
+    margin-top: 5em;
+}

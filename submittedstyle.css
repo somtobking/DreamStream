@@ -1,0 +1,42 @@
+body {
+  background-image: url("thanks.png");
+  background-repeat: no-repeat;
+  background-position-y: 7em;
+  background-position-x: 15em;
+  background-color:lawngreen;
+}
+
+.ds {
+  width: 50%;
+  margin-left: 25em;
+  margin-top: 3em;
+  margin-bottom: 10em;
+  position: absolute;
+}
+
+.image00 {
+  width: 70%;
+  border-radius: 10em;
+  margin-left: 15em;
+  margin-top: 40em;
+  margin-bottom: 10em;
+  position: absolute;
+}
+
+#submit {
+  text-align: center;
+  position: absolute;
+  margin-top: 14em;
+  margin-left: 5em;
+  margin-bottom: 1em;
+  color: dodgerblue;
+  font-size: 80px;
+  font-style: italic;
+}
+
+footer {
+  padding: .5em;
+  position: absolute;
+  float: center;
+  margin-top: 73em;
+}
