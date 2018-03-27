@@ -33,10 +33,10 @@
 
         <!-- Photo Grid -->
         <div class="w3-row">
-            <div class="w3-half">     
+            <div class="w3-half">
                 <img src="streetart2.jpg" style="width:100%">
-                <img src="image.jpg" style="width:100%">    
-                
+                <img src="image.jpg" style="width:100%">
+
             </div>
 
             <div class="w3-half">
@@ -57,7 +57,7 @@
     neural network to find and enhance patterns in images via algorithmic pareidolia, thus creating a dream-like hallucinogenic
     appearance in the deliberately over-processed images.</p>
             <p class="w3-large w3-text-red">Dream Stream: Engineered from deep dream to give you a great
-                user experience and more.. visuals like you've never seen. 
+                user experience and more.. visuals like you've never seen.
             </p>
             <h4>Complete form below to enter</h4>
             <div class="w3-section">
@@ -72,27 +72,20 @@
                 </label>
                 <input class="w3-input w3-border" type="text" required name="Email">
             </div>
-
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text">Upload</span>
-    </div>
-    <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01">
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-    </div>
-</div>
-
-
-<button type="button" class="btn btn-primary">
-    <a href="file:///Users/somto/Desktop/SMU/CSE%204345/Project/Codes/submitted.html">Submit</a>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
+            </form>
+            <br>
+<button type="button" class="btn btn-success">
+    <a href="file:///Users/somto/Desktop/SMU/CSE%204345/Project/Codes/DreamStream/submitted.html">Submit</a>
 </button>
 </form>
-
+</br>
 <footer>
     All rights reserved. Property of Dream Stream
 </footer>
-
 </body>
 
 </html>
