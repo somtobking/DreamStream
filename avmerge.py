@@ -4,7 +4,7 @@ import csv
 
 
 def processAV(video, audio, output_filename):
-    "Function to combine audio and video files"
+    """Function to combine audio and video files"""
 
     ff = FFmpeg(inputs={video:None, audio:None}, outputs={output_filename: ['-y','-vcodec', 'mpeg4', '-qscale', '5', '-shortest']})
 
