@@ -24,13 +24,12 @@ def getFPS(video):
 
     if int(major_ver) < 3:
         fps = video.get(cv2.cv.CV_CAP_PROP_FPS)
-        print "Frames per second using video.get(cv2.cv.CV_CAP_PROP_FPS): {0}".format(fps)
+        # print "Frames per second using video.get(cv2.cv.CV_CAP_PROP_FPS): {0}".format(fps)
     else:
         fps = video.get(cv2.CAP_PROP_FPS)
-        print "Frames per second using video.get(cv2.CAP_PROP_FPS) : {0}".format(fps)
+        # print "Frames per second using video.get(cv2.CAP_PROP_FPS) : {0}".format(fps)
 
     total = video.get(cv2.CAP_PROP_FRAME_COUNT)
-    # print (total)
     video.release()
 
     return fps, total

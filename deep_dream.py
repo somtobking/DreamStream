@@ -13,7 +13,7 @@ import beat_tracker
 
 output_image_counter = 0
 
-def main(input_filename):
+def main(input_filename, number_oct):
     #Step 1 - download google's pre-trained neural network
     url = 'https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip'
     data_dir = 'data/'
@@ -129,7 +129,7 @@ def main(input_filename):
     ########################################################################################################
     ##############################################################################
 
-    def render_deepdream(t_obj, img0=img_noise, octave_n=6,
+    def render_deepdream(t_obj, img0=img_noise, octave_n=16,
                          iter_n=10, step=1.8, octave_scale=1.2):
         t_score = tf.reduce_mean(t_obj)  # defining the optimization objective
         t_grad = tf.gradients(t_score, t_input)[0]  # behold the power of automatic differentiation!
@@ -163,7 +163,7 @@ def main(input_filename):
     video_fps, video_tot_frames = avmerge.getFPS(input_filename)
     beat_list = avmerge.getBeatFrames(beat_tracker.run_beat_tracker(audio_file), video_fps)
     temp_frames = amplitude.getAmplitude(audio_file, video_fps)
-    frame_amplitudes = amplitude.distort_amplitude(temp_frames, 14)
+    frame_amplitudes = amplitude.distort_amplitude(temp_frames, float(number_oct))
 
 
     # open video file
@@ -177,16 +177,16 @@ def main(input_filename):
         if frame is None:
             break
 
-        octave_info = octave_details(frame_n-1, beat_list, frame_amplitudes)
-
-        # Step 4 - Apply gradient ascent to that layer
-        output_frame = render_deepdream(tf.square(T('mixed4b')), frame, octave_info)
-        if writer is None:
-            frame_size = (output_frame.shape[1], output_frame.shape[0])
-            writer = cv2.VideoWriter('output.avi', cv2.VideoWriter_fourcc(*'XVID'), video_fps, frame_size)
-
-        writer.write(output_frame)
-        print 'frame %i complete. Amplitude = %i' % (frame_n, frame_amplitudes[frame_n - 1])
+        # octave_info = octave_details(frame_n-1, beat_list, frame_amplitudes)
+        #
+        # # Step 4 - Apply gradient ascent to that layer
+        # output_frame = render_deepdream(tf.square(T('mixed3a')), frame, octave_info)
+        # if writer is None:
+        #     frame_size = (output_frame.shape[1], output_frame.shape[0])
+        #     writer = cv2.VideoWriter('output.avi', cv2.VideoWriter_fourcc(*'XVID'), video_fps, frame_size)
+        #
+        # writer.write(output_frame)
+        print ('frame %i complete. Amplitude = %i' % (frame_n, frame_amplitudes[frame_n - 1]))
         frame_n += 1
 
     cap.release()
@@ -209,10 +209,14 @@ def octave_details(frame, beats, amps):
 
 
 if __name__ == '__main__':
-    # if len(sys.argv) < 2:
-    #     input_filename = 'marshmello.mp4'
-    # else:
-    #     input_filename = sys.argv[1]
-    #
-    # main(input_filename)
-    avmerge.processAV('output.avi', 'audio.wav','marshmello_complete.avi')
+    if len(sys.argv) < 2:
+        input_filename = 'marshmello.mp4'
+    else:
+        input_filename = sys.argv[1]
+
+    output_filename = sys.argv[2]
+    output_filename = output_filename + '.avi'
+    number_octaves = sys.argv[3]
+
+    main(input_filename, number_octaves)
+    avmerge.processAV('output.avi', 'audio.wav', output_filename)
